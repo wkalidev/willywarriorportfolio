@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willy Warrior - Web3 Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridScroll 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gridScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================ */
+        /* HEADER BANNER SECTION */
+        /* ============================================ */
+        .header-banner {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a0a1a 100%);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.5),
+                        inset 0 0 50px rgba(255, 0, 255, 0.1);
+            margin-bottom: -100px;
+        }
+
+        /* Grid background for banner */
+        .banner-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: bannerGridMove 20s linear infinite;
+        }
+
+        @keyframes bannerGridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        /* Floating particles in banner */
+        .banner-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #00ffff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ffff;
+            animation: floatParticle 8s infinite ease-in-out;
+        }
+
+        .banner-particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .banner-particle:nth-child(2) { left: 30%; top: 60%; animation-delay: 1s; }
+        .banner-particle:nth-child(3) { left: 50%; top: 40%; animation-delay: 2s; }
+        .banner-particle:nth-child(4) { left: 70%; top: 70%; animation-delay: 3s; }
+        .banner-particle:nth-child(5) { left: 90%; top: 30%; animation-delay: 4s; }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-30px) translateX(20px); }
+            75% { transform: translateY(30px) translateX(-20px); }
+        }
+
+        /* Banner content */
+        .banner-content {
+            position: relative;
+            z-index: 10;
+            padding: 60px 80px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .banner-title {
+            font-size: 72px;
+            font-weight: bold;
+            color: #00ffff;
+            text-shadow: 
+                0 0 10px #00ffff,
+                0 0 20px #00ffff,
+                0 0 30px #00ffff,
+                0 0 40px #ff00ff;
+            letter-spacing: 4px;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 10px #00ffff,
+                    0 0 20px #00ffff,
+                    0 0 30px #00ffff,
+                    0 0 40px #ff00ff;
+            }
+            50% { 
+                text-shadow: 
+                    0 0 20px #00ffff,
+                    0 0 30px #00ffff,
+                    0 0 40px #00ffff,
+                    0 0 50px #ff00ff;
+            }
+        }
+
+        .banner-subtitle {
+            font-size: 28px;
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        .banner-skills {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .banner-skill-tag {
+            padding: 8px 20px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            font-size: 16px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            animation: tagGlow 3s ease-in-out infinite;
+        }
+
+        .banner-skill-tag:nth-child(2n) {
+            border-color: #ff00ff;
+            color: #ff00ff;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+        }
+
+        @keyframes tagGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); }
+        }
+
+        .banner-location {
+            font-size: 18px;
+            color: #ffffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        /* Base Network accent */
+        .base-accent {
+            position: absolute;
+            top: 30px;
+            right: 80px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #0052ff 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: basePulse 3s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        @keyframes basePulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .base-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 10px #0052ff;
+        }
+
+        /* ============================================ */
+        /* AVATAR SECTION */
+        /* ============================================ */
+        .avatar-section {
+            text-align: center;
+            padding: 0 20px 50px;
+            position: relative;
+            z-index: 100;
+        }
+
+        .avatar-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background: radial-gradient(circle at 30% 30%, #1a0a2e, #0a0a1a);
+            border-radius: 50%;
+            overflow: visible;
+            margin: 0 auto;
+        }
+
+        /* Glow rings around avatar */
+        .glow-ring {
+            position: absolute;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ring-1 {
+            width: 210px;
+            height: 210px;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px #00ffff, inset 0 0 20px #00ffff;
+            animation: ringPulse 3s ease-in-out infinite;
+        }
+
+        .ring-2 {
+            width: 225px;
+            height: 225px;
+            border-color: #ff00ff;
+            box-shadow: 0 0 30px #ff00ff;
+            animation: ringPulse 3s ease-in-out infinite 0.5s;
+        }
+
+        .ring-3 {
+            width: 240px;
+            height: 240px;
+            border-color: #0052ff;
+            box-shadow: 0 0 40px #0052ff;
+            animation: ringPulse 3s ease-in-out infinite 1s;
+        }
+
+        @keyframes ringPulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        /* Avatar content */
+        .avatar-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Helmet design */
+        .helmet {
+            position: relative;
+            width: 200px;
+            height: 220px;
+            transform: scale(0.5);
+        }
+
+        .helmet-top {
+            width: 180px;
+            height: 100px;
+            background: linear-gradient(135deg, #00ffff, #0052ff);
+            border-radius: 90px 90px 20px 20px;
+            position: relative;
+            box-shadow: 0 0 30px #00ffff;
+            margin: 0 auto;
+        }
+
+        .visor {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 40px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            border-radius: 5px;
+            box-shadow: 0 0 20px #ff00ff, inset 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: visorScan 2s ease-in-out infinite;
+        }
+
+        @keyframes visorScan {
+            0%, 100% { box-shadow: 0 0 20px #ff00ff, inset 0 0 20px rgba(0, 0, 0, 0.5); }
+            50% { box-shadow: 0 0 40px #00ffff, inset 0 0 20px rgba(0, 255, 255, 0.3); }
+        }
+
+        .helmet-bottom {
+            width: 160px;
+            height: 120px;
+            background: linear-gradient(180deg, #00ffff, #0052ff);
+            margin: 0 auto;
+            border-radius: 0 0 80px 80px;
+            box-shadow: 0 10px 30px #00ffff;
+        }
+
+        .emblem {
+            position: absolute;
+            bottom: -70px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.5);
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #00ffff;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .emblem-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .emblem-subtext {
+            font-size: 14px;
+            color: #ff00ff;
+            text-shadow: 0 0 5px #ff00ff;
+            margin-top: 5px;
+        }
+
+        /* Hero bio section */
+        .hero-bio {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero-bio p {
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            padding: 12px 30px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================ */
+        /* STATS SECTION */
+        /* ============================================ */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 60px 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(10, 10, 26, 0.9), rgba(26, 10, 46, 0.9));
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+        }
+
+        .stat-card h3 {
+            font-size: 48px;
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            color: #ff00ff;
+            font-size: 16px;
+        }
+
+        /* ============================================ */
+        /* SECTION HEADERS */
+        /* ============================================ */
+        .section-header {
+            text-align: center;
+            margin: 80px 0 50px;
+            padding: 0 20px;
+        }
+
+        .section-header h2 {
+            font-size: 48px;
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: #ff00ff;
+            font-size: 18px;
+        }
+
+        /* ============================================ */
+        /* PROJECT CARDS WITH INTEGRATED LOGOS */
+        /* ============================================ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            padding: 0 20px 80px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(10, 10, 26, 0.95), rgba(26, 10, 46, 0.95));
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.6);
+            border-color: #ff00ff;
+        }
+
+        /* Project Logo Header */
+        .project-logo-header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0a0a1a, #1a0a2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #00ffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-logo-header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(0, 255, 255, 0.03) 10px,
+                    rgba(0, 255, 255, 0.03) 11px
+                );
+        }
+
+        /* Mini logo design */
+        .mini-logo {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #1a0a2e, #0a0a1a);
+            border-radius: 15px;
+            border: 2px solid #00ffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .mini-logo-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 10px #00ffff);
+        }
+
+        .mini-logo-text {
+            font-size: 10px;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+            text-align: center;
+        }
+
+        /* Glow particles for mini logo */
+        .mini-glow-dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #00ffff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #00ffff;
+            animation: miniFloat 3s ease-in-out infinite;
+        }
+
+        .mg-1 { top: 30px; left: 30px; animation-delay: 0s; }
+        .mg-2 { top: 80px; right: 40px; animation-delay: 0.5s; }
+        .mg-3 { bottom: 50px; left: 50px; animation-delay: 1s; }
+
+        @keyframes miniFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Project body */
+        .project-body {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 26px;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            margin-bottom: 10px;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 6px 15px;
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid #00ff00;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+            margin-bottom: 15px;
+        }
+
+        .project-status.building {
+            background: rgba(255, 165, 0, 0.2);
+            border-color: #ffa500;
+            color: #ffa500;
+            text-shadow: 0 0 5px #ffa500;
+        }
+
+        .project-description {
+            color: #ffffff;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            padding: 6px 12px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #00ffff;
+        }
+
+        .tech-tag.pink {
+            background: rgba(255, 0, 255, 0.1);
+            border-color: #ff00ff;
+            color: #ff00ff;
+        }
+
+        .tech-tag.blue {
+            background: rgba(0, 82, 255, 0.1);
+            border-color: #0052ff;
+            color: #0052ff;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            flex: 1;
+            padding: 12px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .project-link:hover {
+            background: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        /* ============================================ */
+        /* SKILLS SECTION */
+        /* ============================================ */
+        .skills-section {
+            background: linear-gradient(135deg, rgba(10, 10, 26, 0.95), rgba(26, 10, 46, 0.95));
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 50px;
+            margin: 60px 20px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .skill-category h3 {
+            font-size: 24px;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .skill-item {
+            color: #ffffff;
+            padding: 10px 15px;
+            background: rgba(0, 255, 255, 0.05);
+            border-left: 3px solid #00ffff;
+            border-radius: 5px;
+        }
+
+        /* ============================================ */
+        /* CONTACT CTA */
+        /* ============================================ */
+        .contact-cta {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(10, 10, 26, 0.95), rgba(26, 10, 46, 0.95));
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            margin: 60px 20px;
+        }
+
+        .contact-cta h2 {
+            font-size: 42px;
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .contact-cta p {
+            font-size: 18px;
+            color: #ff00ff;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            padding: 18px 50px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            border: none;
+            color: #000;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.9);
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE DESIGN */
+        /* ============================================ */
+        @media (max-width: 768px) {
+            .banner-title { font-size: 42px; }
+            .banner-subtitle { font-size: 20px; }
+            .banner-content { padding: 40px 30px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 36px; }
+            .skills-section { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <div class="container">
+        <!-- HEADER BANNER -->
+        <section class="header-banner">
+            <div class="banner-grid"></div>
+            
+            <div class="banner-particle"></div>
+            <div class="banner-particle"></div>
+            <div class="banner-particle"></div>
+            <div class="banner-particle"></div>
+            <div class="banner-particle"></div>
+            
+            <div class="base-accent">
+                <div class="base-text">BASE</div>
+            </div>
+            
+            <div class="banner-content">
+                <div>
+                    <div class="banner-title">WILLY WARRIOR</div>
+                    <div class="banner-subtitle">Web3 Developer & Crypto Growth Specialist</div>
+                    
+                    <div class="banner-skills">
+                        <div class="banner-skill-tag">Solidity</div>
+                        <div class="banner-skill-tag">React</div>
+                        <div class="banner-skill-tag">Base Network</div>
+                        <div class="banner-skill-tag">DeFi</div>
+                        <div class="banner-skill-tag">P2E Gaming</div>
+                        <div class="banner-skill-tag">Smart Contracts</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="banner-location">
+                        📍 Sicily, Italy • Multi-language: IT/EN/FR
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AVATAR SECTION -->
+        <section class="avatar-section">
+            <div class="avatar-container">
+                <div class="avatar">
+                    <div class="glow-ring ring-3"></div>
+                    <div class="glow-ring ring-2"></div>
+                    <div class="glow-ring ring-1"></div>
+                    
+                    <div class="avatar-content">
+                        <div class="helmet">
+                            <div class="helmet-top">
+                                <div class="visor"></div>
+                            </div>
+                            <div class="helmet-bottom"></div>
+                            
+                            <div class="emblem">
+                                <div class="emblem-text">WW</div>
+                                <div class="emblem-subtext">BASE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Bio -->
+            <div class="hero-bio">
+                <p>
+                    Sicilian developer building the future of decentralized applications on Base Network. 
+                    Specializing in DeFi protocols, P2E gaming, NFT marketplaces, and AI-powered Web3 experiences. 
+                    From RemixCuisine DAO to cross-chain bridges - I build production-ready blockchain solutions that scale.
+                </p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/wkalidev" class="social-link" target="_blank">
+                        🔗 GitHub
+                    </a>
+                    <a href="https://x.com/willycodexwar" class="social-link" target="_blank">
+                        🐦 X/Twitter
+                    </a>
+                    <a href="https://farcaster.xyz/willywarrior" class="social-link" target="_blank">
+                        💜 Farcaster
+                    </a>
+                    <a href="https://bsky.app/profile/beatchainreaction.bsky.social" class="social-link" target="_blank">
+                        🦋 Bluesky
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <h3>13+</h3>
+                <p>GitHub Repositories</p>
+            </div>
+            <div class="stat-card">
+                <h3>3</h3>
+                <p>Languages (IT/EN/FR)</p>
+            </div>
+            <div class="stat-card">
+                <h3>100%</h3>
+                <p>Open Source</p>
+            </div>
+            <div class="stat-card">
+                <h3>24/7</h3>
+                <p>Available</p>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS -->
+        <section class="section-header">
+            <h2>🚀 FEATURED PROJECTS</h2>
+            <p>Building the Web3 infrastructure of tomorrow</p>
+        </section>
+
+        <div class="projects-grid">
+            <!-- Project 1: RemixCuisine DAO -->
+            <div class="project-card">
+                <div class="project-logo-header">
+                    <div class="mini-glow-dot mg-1"></div>
+                    <div class="mini-glow-dot mg-2"></div>
+                    <div class="mini-glow-dot mg-3"></div>
+                    <div class="mini-logo" style="border-color: #00ffff;">
+                        <div class="mini-logo-icon">🍳</div>
+                        <div class="mini-logo-text">REMIX CUISINE</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">RemixCuisine DAO</h3>
+                    <span class="project-status">LIVE</span>
+                    <p class="project-description">
+                        AI-powered Web3 cooking platform with Farcaster integration. Features DAO governance, 
+                        Claude AI recipe generation, NFT recipe cards, and community-driven culinary innovation 
+                        on Base Network.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag pink">Claude AI</span>
+                        <span class="tech-tag blue">Base Network</span>
+                        <span class="tech-tag">Farcaster</span>
+                        <span class="tech-tag pink">DAO</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://remixcuisine-dao.vercel.app/" class="project-link" target="_blank">
+                            🔗 Live Demo
+                        </a>
+                        <a href="https://x.com/RemixCuisineDAO" class="project-link" target="_blank">
+                            🐦 Twitter
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Base2Stacks Bridge -->
+            <div class="project-card">
+                <div class="project-logo-header">
+                    <div class="mini-glow-dot mg-1"></div>
+                    <div class="mini-glow-dot mg-2"></div>
+                    <div class="mini-glow-dot mg-3"></div>
+                    <div class="mini-logo" style="border-color: #ff00ff;">
+                        <div class="mini-logo-icon">🌉</div>
+                        <div class="mini-logo-text">BASE 2 STACKS</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">Base2Stacks Bridge</h3>
+                    <span class="project-status building">BUILDING</span>
+                    <p class="project-description">
+                        Cross-chain DeFi ecosystem bridging Base Network and Stacks Bitcoin L2. 
+                        Climbed from #186 to #35 in Stacks Builder Rewards with 100+ commits in one day.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Solidity</span>
+                        <span class="tech-tag pink">Clarity</span>
+                        <span class="tech-tag blue">Cross-Chain</span>
+                        <span class="tech-tag">DeFi</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/wkalidev" class="project-link" target="_blank">
+                            📱 GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Zoo-F-O Escape -->
+            <div class="project-card">
+                <div class="project-logo-header">
+                    <div class="mini-glow-dot mg-1"></div>
+                    <div class="mini-glow-dot mg-2"></div>
+                    <div class="mini-glow-dot mg-3"></div>
+                    <div class="mini-logo" style="border-color: #0052ff;">
+                        <div class="mini-logo-icon">🎮</div>
+                        <div class="mini-logo-text">ZOO-F-O ESCAPE</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">Zoo-F-O Escape</h3>
+                    <span class="project-status building">BUILDING</span>
+                    <p class="project-description">
+                        Endless runner game for Cryptoys Game Jam with $5,000 prize. Multi-platform 
+                        Web3 gaming experience with NFT integration and play-to-earn mechanics.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Phaser.js</span>
+                        <span class="tech-tag pink">Web3</span>
+                        <span class="tech-tag blue">P2E</span>
+                        <span class="tech-tag">Gaming</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/wkalidev" class="project-link" target="_blank">
+                            🎮 GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Crypto Tracker -->
+            <div class="project-card">
+                <div class="project-logo-header">
+                    <div class="mini-glow-dot mg-1"></div>
+                    <div class="mini-glow-dot mg-2"></div>
+                    <div class="mini-glow-dot mg-3"></div>
+                    <div class="mini-logo" style="border-color: #00ff88;">
+                        <div class="mini-logo-icon">📊</div>
+                        <div class="mini-logo-text">CRYPTO TRACKER</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">Crypto Price Tracker</h3>
+                    <span class="project-status">LIVE</span>
+                    <p class="project-description">
+                        Real-time cryptocurrency finance price tracker using React Hooks and Axios. 
+                        Features live price updates, historical charts, portfolio tracking, and market analytics.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag pink">Axios</span>
+                        <span class="tech-tag blue">Hooks</span>
+                        <span class="tech-tag">API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/wkalidev/react-api-crypto-tracker-v1" class="project-link" target="_blank">
+                            📱 GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Portfolio -->
+            <div class="project-card">
+                <div class="project-logo-header">
+                    <div class="mini-glow-dot mg-1"></div>
+                    <div class="mini-glow-dot mg-2"></div>
+                    <div class="mini-glow-dot mg-3"></div>
+                    <div class="mini-logo" style="border-color: #00ffff;">
+                        <div class="mini-logo-icon">💼</div>
+                        <div class="mini-logo-text">PORTFOLIO</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">React Portfolio</h3>
+                    <span class="project-status">LIVE</span>
+                    <p class="project-description">
+                        Modern, responsive portfolio website built with React. Showcases full-stack development 
+                        capabilities with smooth animations, optimized performance, and clean UI/UX design.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag pink">JavaScript</span>
+                        <span class="tech-tag blue">CSS3</span>
+                        <span class="tech-tag">Responsive</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/wkalidev/react-portfolio" class="project-link" target="_blank">
+                            📱 GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: E-commerce -->
+            <div class="project-card">
+                <div class="project-logo-header">
+                    <div class="mini-glow-dot mg-1"></div>
+                    <div class="mini-glow-dot mg-2"></div>
+                    <div class="mini-glow-dot mg-3"></div>
+                    <div class="mini-logo" style="border-color: #ff6b00;">
+                        <div class="mini-logo-icon">🛒</div>
+                        <div class="mini-logo-text">E-SHOP PRO</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">E-commerce Platform</h3>
+                    <span class="project-status">LIVE</span>
+                    <p class="project-description">
+                        Full-featured e-commerce website with shopping cart, product listings, user authentication, 
+                        and payment integration. Modern design with smooth user experience.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag pink">JavaScript</span>
+                        <span class="tech-tag blue">E-commerce</span>
+                        <span class="tech-tag">Full-Stack</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/wkalidev/ecomercewebsite" class="project-link" target="_blank">
+                            📱 GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 7: Beat Chain Reaction -->
+            <div class="project-card">
+                <div class="project-logo-header">
+                    <div class="mini-glow-dot mg-1"></div>
+                    <div class="mini-glow-dot mg-2"></div>
+                    <div class="mini-glow-dot mg-3"></div>
+                    <div class="mini-logo" style="border-color: #8a63d2;">
+                        <div class="mini-logo-icon">🎵</div>
+                        <div class="mini-logo-text">BEAT CHAIN</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">Beat Chain Reaction</h3>
+                    <span class="project-status">LIVE</span>
+                    <p class="project-description">
+                        Breaking down blockchain's biggest moments. Crypto news and analysis platform delivering 
+                        insights on Bitcoin, NFTs, DeFi, and Web3.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag pink">Content</span>
+                        <span class="tech-tag blue">Crypto News</span>
+                        <span class="tech-tag">Web3</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/wkalidev/beatchainreaction" class="project-link" target="_blank">
+                            📱 GitHub
+                        </a>
+                        <a href="https://bsky.app/profile/beatchainreaction.bsky.social" class="project-link" target="_blank">
+                            🦋 Bluesky
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 8: GM Base Friend -->
+            <div class="project-card">
+                <div class="project-logo-header">
+                    <div class="mini-glow-dot mg-1"></div>
+                    <div class="mini-glow-dot mg-2"></div>
+                    <div class="mini-glow-dot mg-3"></div>
+                    <div class="mini-logo" style="border-color: #0052ff;">
+                        <div class="mini-logo-icon">👋</div>
+                        <div class="mini-logo-text">GM BASE</div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">GM Base Friend</h3>
+                    <span class="project-status">LIVE</span>
+                    <p class="project-description">
+                        Base Network social engagement tool built with TypeScript. Community-focused application 
+                        for connecting builders in the Base ecosystem.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag pink">Base Network</span>
+                        <span class="tech-tag blue">Social</span>
+                        <span class="tech-tag">Web3</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/wkalidev/gm-base-friend" class="project-link" target="_blank">
+                            📱 GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SKILLS SECTION -->
+        <section class="section-header">
+            <h2>💻 TECH STACK & SKILLS</h2>
+            <p>Full-stack expertise across the Web3 ecosystem</p>
+        </section>
+
+        <div class="skills-section">
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>⛓️ Blockchain</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Solidity Smart Contracts</div>
+                        <div class="skill-item">Clarity (Stacks)</div>
+                        <div class="skill-item">Base Network Native</div>
+                        <div class="skill-item">Ethereum / EVM</div>
+                        <div class="skill-item">Cross-chain Development</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>⚛️ Frontend</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">React / Next.js</div>
+                        <div class="skill-item">TypeScript / JavaScript</div>
+                        <div class="skill-item">Tailwind CSS</div>
+                        <div class="skill-item">Responsive Design</div>
+                        <div class="skill-item">UI/UX Design</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🔗 Web3 Tools</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">WalletConnect</div>
+                        <div class="skill-item">Wagmi / Viem</div>
+                        <div class="skill-item">ethers.js</div>
+                        <div class="skill-item">Hardhat / Foundry</div>
+                        <div class="skill-item">IPFS Storage</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🎮 Specializations</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">DeFi Protocols</div>
+                        <div class="skill-item">NFT Marketplaces</div>
+                        <div class="skill-item">P2E Gaming (Phaser.js)</div>
+                        <div class="skill-item">DAO Development</div>
+                        <div class="skill-item">AI Integration (Claude)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT CTA -->
+        <section class="contact-cta">
+            <h2>Ready to Build Something Amazing?</h2>
+            <p>Available for freelance projects, collaborations, and full-time opportunities</p>
+            <a href="https://github.com/wkalidev" class="cta-button" target="_blank">
+                Let's Connect →
+            </a>
+        </section>
+    </div>
+</body>
+</html>
